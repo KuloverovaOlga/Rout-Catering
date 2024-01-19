@@ -1,9 +1,15 @@
+import { rem } from '../utils/utils';
 import Swiper from 'swiper/bundle';
 import 'swiper/css/bundle';
 
 document.addEventListener('DOMContentLoaded', () => {
   try {
     burgerMenu();
+  } catch {}
+
+  // sliders
+  try {
+    mainBannerSlider();
   } catch {}
 
 });
@@ -30,7 +36,23 @@ function burgerMenu() {
 
 // SLIDERS ------------------------------------------------------------
 function mainBannerSlider() {
-  const swiper = new Swiper('.', {
-
+  const swiper = new Swiper('.main-banner__slider', {
+    slidesPerView: 1,
+    loop: 'true',
+    spaceBetween: rem(2),
+    speed: 1000,
+    effect: "fade",
+    autoplay: {
+      delay: 2500,
+      disableOnInteraction: false,
+    },
+    navigation: {
+      nextEl: '.main-banner__btn-next',
+      prevEl: '.main-banner__btn-prev',
+    },
+    pagination: {
+      el: '.main-banner__fractions',
+      type: "fraction",
+    },
   });
 }
