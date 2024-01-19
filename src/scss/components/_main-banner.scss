@@ -1,0 +1,21 @@
+.main-banner {
+  background-color: $main;
+  color: $Beige;
+  .container {
+    display: grid;
+  }
+  &__slide {
+    &-people {
+      &-img {
+        width: 4.3rem;
+        height: 4.3rem;
+        border-radius: 50%;
+        img {
+          border-radius: inherit;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+    }
+  }
+}

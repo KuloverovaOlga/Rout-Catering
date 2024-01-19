@@ -1,0 +1,68 @@
+.btn-pr {
+  font-family: 'Gilroy';
+  font-size: 2rem;
+  font-weight: 500;
+  line-height: 120%;
+  padding: 0.4rem 0.4rem 0.4rem 4.8rem;
+  border-radius: 1.2rem;
+  position: relative;
+  background-color: $LightGreen;
+  color: $green;
+  display: flex;
+  align-items: center;
+  gap: 2.4rem;
+  transition-property: background-color, color;
+  transition-duration: 0.4s;
+  transition-timing-function: ease;
+  cursor: pointer;
+  @include small-tablet {
+    font-size: 3.2rem;
+    padding: 0.6rem 0.6rem 0.6rem 4.8rem;
+    gap: 4.8rem;
+  }
+  &:hover {
+    background-color: $green;
+    color: $LightGreen;
+    .arrow {
+      color: $green;
+    }
+    .block {
+      color: $LightGreen;
+    }
+  }
+  &:disabled {
+    background-color: #DFDFDF;
+    color: #A2ADC1;
+  }
+  .arrow {
+    color: $LightGreen;
+    transition: color 0.4s ease;
+  }
+  .block {
+    color: $green;
+    transition: color 0.4s ease;
+  }
+  svg {
+    width: 5.2rem;
+    height: 4.6rem;
+    @include small-tablet {
+        width: 8.6rem;
+        height: 7.6rem;
+    }
+  }
+}
+
+.btn-sec {
+  font-family: 'Gilroy';
+  font-size: 2rem;
+  font-weight: 500;
+  line-height: 120%;
+  color: $LightGreen;
+  transition: color 0.4s ease;
+  &:hover {
+    color: $textAndLine;
+  }
+  &:disabled {
+    color: #A2ADC1;
+  }
+}

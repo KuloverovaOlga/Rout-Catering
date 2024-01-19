@@ -1,0 +1,65 @@
+// --------------------------------- mixins ---------------------------------
+
+@import './mixins';
+
+// -------------------------------- variables -------------------------------
+
+$font: 'Gilroy';
+
+// colors
+$white: #ffffff;
+$black: #000000;
+$bodyColor: #FBF7EB;
+$LightGreen: #D3FCA0;
+$green: #2E574D;
+$Beige: #FBF7EB;
+$main: #2E574D;
+$textAndLine: #5A7B67;
+$grey: #929292;
+$lightGray: #D9D9D9;
+
+// ---------------------------------- fonts ---------------------------------
+
+// local fonts
+@import './fonts';
+
+// ------------------------------- base styles ------------------------------
+
+// base scss file
+@import './set';
+
+// body
+body {
+    &.lock {
+        overflow: hidden;
+        touch-action: none;
+    }
+}
+
+// main
+main {
+    // padding-top: 2.4rem;
+    // @media (max-width: 48em) {
+    //     main {
+    //         padding-top: 4.8rem;
+    //     }
+    // }
+}
+
+section {
+  padding: 15rem 0;
+}
+
+// --------------------------------------------------------------------------
+
+// header / footer
+@import './components/_header';
+@import './components/_footer';
+// ui
+@import '../ui/ui.scss';
+
+// --------------------------------------------------------------------------
+
+@import './dev/nastiaCandor';
+@import './dev/markusDM.scss';
+
