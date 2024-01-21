@@ -176,6 +176,7 @@ module.exports = {
   entry: {
     index: path.resolve(__dirname, 'src/js', 'app.js'),
     home: path.resolve(__dirname, 'src/js', 'app.js'),
+    services_det: path.resolve(__dirname, 'src/js', 'app.js'),
   },
   // entry: getEntries(),
   output: {
