@@ -1,10 +1,24 @@
 import { rem } from '../utils/utils';
 import Swiper from 'swiper/bundle';
 import 'swiper/css/bundle';
+import popup from '../utils/popup';
+import form from '../utils/form';
+import IMask from 'imask';
+
+export const modules = {};
 
 document.addEventListener('DOMContentLoaded', () => {
   try {
     burgerMenu();
+  } catch {}
+  try {
+    phonePopupMask();
+  } catch {}
+  try {
+    popup();
+  } catch {}
+  try {
+    form();
   } catch {}
 
   // sliders
@@ -13,6 +27,17 @@ document.addEventListener('DOMContentLoaded', () => {
   } catch {}
 
 });
+
+// PHONE MASK
+
+function phonePopupMask() {
+  IMask(
+    document.querySelector('.popup__application-input.phone-mask'),
+    {
+      mask: '+{7} (000) 000 00 00'
+    }
+  );
+}
 
 
 // BURGER MENU ------------------------------------------------------------

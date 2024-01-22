@@ -1,3 +1,4 @@
+import { modules } from "../dev/nastiaCandor";
 /**
  * adds actions to form fields
  * @param {object} options object
@@ -66,7 +67,9 @@ export function formFieldsInit(options = { viewPass: false }) {
           targetElement.closest('.input').classList.add('_filled');
         }
       } else {
-        targetElement.closest('.input').classList.remove('_filled');
+        if (targetElement.closest('.input')) {
+          targetElement.closest('.input').classList.remove('_filled');
+        }
       }
     }
   });
@@ -88,114 +91,97 @@ export function formFieldsInit(options = { viewPass: false }) {
 }
 
 // validation var
-let formValidate = {
+export let formValidate = {
   getErrors(form) {
-    let error = 0;
-    let formRequiredItems = form.querySelectorAll('*[data-required]');
-    if (formRequiredItems.length) {
-      formRequiredItems.forEach(formRequiredItem => {
-        if (
-          (formRequiredItem.offsetParent !== null ||
-            formRequiredItem.tagName === 'SELECT') &&
-          !formRequiredItem.disabled
-        ) {
-          error += this.validateInput(formRequiredItem);
-        }
-      });
-    }
-    return error;
+      let error = 0;
+      let formRequiredItems = form.querySelectorAll('*[data-required]');
+      if (formRequiredItems.length) {
+          formRequiredItems.forEach((formRequiredItem) => {
+              if ((formRequiredItem.offsetParent !== null || formRequiredItem.tagName === 'SELECT') && !formRequiredItem.disabled) {
+                  error += this.validateInput(formRequiredItem);
+              }
+          });
+      }
+      return error;
   },
   validateInput(formRequiredItem) {
-    let error = 0;
-
-    if (formRequiredItem.dataset.required === 'email') {
-      formRequiredItem.value = formRequiredItem.value.replace(' ', '');
-      if (this.emailTest(formRequiredItem)) {
-        this.addError(formRequiredItem);
-        error++;
+      let error = 0;
+      if (formRequiredItem.dataset.required === 'email') {
+          formRequiredItem.value = formRequiredItem.value.replace(' ', '');
+          if (this.emailTest(formRequiredItem)) {
+              this.addError(formRequiredItem);
+              error++;
+          } else {
+              this.removeError(formRequiredItem);
+          }
+      } else if (formRequiredItem.dataset.required === 'tel') {
+          // formRequiredItem.value = formRequiredItem.value.replace(/[^0-9]/g, ''); // Оставить только цифры и символы +()
+          if (!/^\+\d{1,2} \(\d{3}\) \d{3} \d{2} \d{2}$/.test(formRequiredItem.value)) {
+              this.addError(formRequiredItem);
+              error++;
+          } else {
+              this.removeError(formRequiredItem);
+          }
       } else {
-        this.removeError(formRequiredItem);
+          if (!formRequiredItem.value.trim()) {
+              this.addError(formRequiredItem);
+              error++;
+          } else {
+              this.removeError(formRequiredItem);
+          }
       }
-    } else if (
-      formRequiredItem.type === 'checkbox' &&
-      !formRequiredItem.checked
-    ) {
-      this.addError(formRequiredItem);
-      error++;
-    } else {
-      if (
-        !formRequiredItem.value.trim() &&
-        !formRequiredItem.hasAttribute('data-static')
-      ) {
-        this.addError(formRequiredItem);
-        error++;
-      } else if (formRequiredItem.dataset.validate === 'letters-only') {
-        const pattern = /[0-9`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
-        if (pattern.test(formRequiredItem.value)) {
-          formRequiredItem.dataset.error = ``;
-          this.addError(formRequiredItem);
-          error++;
-        }
-      } else {
-        this.removeError(formRequiredItem);
-      }
-    }
-    return error;
+      return error;
   },
   addError(formRequiredItem) {
-    formRequiredItem.classList.add('_form-error');
-    formRequiredItem.parentElement.classList.add('_form-error');
-    formRequiredItem.parentElement.classList.remove('_filled');
-    let inputError =
-      formRequiredItem.parentElement.querySelector('.form-error');
-    if (inputError) formRequiredItem.parentElement.removeChild(inputError);
-    if (formRequiredItem.dataset.error) {
-      formRequiredItem.parentElement.insertAdjacentHTML(
-        'beforeend',
-        `<div class="form-error txt16">${formRequiredItem.dataset.error}</div>`
-      );
-    }
-    if (formRequiredItem.closest('.input_validate')) {
-      formRequiredItem.closest('form').classList.add('_error');
-    }
+      formRequiredItem.classList.add('_form-error');
+      formRequiredItem.parentElement.classList.add('_form-error');
+      const error = formRequiredItem.parentElement.parentElement.querySelector('.error-span');
+      error.classList.add('active');
+      let inputError = formRequiredItem.parentElement.querySelector('.form__error');
+      if (inputError) formRequiredItem.parentElement.removeChild(inputError);
+      if (formRequiredItem.dataset.error) {
+          formRequiredItem.parentElement.insertAdjacentHTML('beforeend', `<div class="form__error">${formRequiredItem.dataset.error}</div>`);
+      }
   },
   removeError(formRequiredItem) {
-    formRequiredItem.classList.remove('_form-error');
-    formRequiredItem.parentElement.classList.remove('_form-error');
-    if (formRequiredItem.parentElement.querySelector('.form-error')) {
-      formRequiredItem.parentElement.removeChild(
-        formRequiredItem.parentElement.querySelector('.form-error')
-      );
-    }
-    if (formRequiredItem.closest('.input_validate')) {
-      formRequiredItem.closest('form').classList.remove('_error');
-    }
+      formRequiredItem.classList.remove('_form-error');
+      formRequiredItem.parentElement.classList.remove('_form-error');
+      const error = formRequiredItem.parentElement.parentElement.querySelector('.error-span');
+      error.classList.remove('active');
+      if (formRequiredItem.parentElement.querySelector('.form__error')) {
+          formRequiredItem.parentElement.removeChild(formRequiredItem.parentElement.querySelector('.form__error'));
+      }
   },
   formClean(form) {
-    if (!form.hasAttribute('data-save-fields')) {
       form.reset();
       setTimeout(() => {
-        let inputs = form.querySelectorAll('input,textarea');
-        for (let index = 0; index < inputs.length; index++) {
-          const el = inputs[index];
-          el.parentElement.classList.remove('_form-focus');
-          el.classList.remove('_form-focus');
-          formValidate.removeError(el);
-        }
-        let checkboxes = form.querySelectorAll('.checkbox__input');
-        if (checkboxes.length > 0) {
-          for (let index = 0; index < checkboxes.length; index++) {
-            const checkbox = checkboxes[index];
-            checkbox.checked = false;
+          let inputs = form.querySelectorAll('input,textarea');
+          for (let index = 0; index < inputs.length; index++) {
+              const el = inputs[index];
+              el.parentElement.classList.remove('_form-focus');
+              el.classList.remove('_form-focus');
+              formValidate.removeError(el);
           }
-        }
+          let checkboxes = form.querySelectorAll('.checkbox__input');
+          if (checkboxes.length > 0) {
+              for (let index = 0; index < checkboxes.length; index++) {
+                  const checkbox = checkboxes[index];
+                  checkbox.checked = false;
+              }
+          }
+          // if (modules.select) {
+          //     let selects = form.querySelectorAll('.select');
+          //     if (selects.length) {
+          //         for (let index = 0; index < selects.length; index++) {
+          //             const select = selects[index].querySelector('select');
+          //             modules.select.selectBuild(select);
+          //         }
+          //     }
+          // }
       }, 0);
-    }
   },
   emailTest(formRequiredItem) {
-    return !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,8})+$/.test(
-      formRequiredItem.value
-    );
+      return !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,8})+$/.test(formRequiredItem.value);
   },
 };
 
@@ -261,23 +247,22 @@ export function formSubmit(options = { validate: true }) {
   }
   // actions after submitting the form
   function formSent(form, responseResult = ``) {
-    // show popup, if popup module is connected and form has setting
-    // setTimeout(() => {
-    //     if (modules.modal) {
-    //         const modal = form.dataset.modalMessage;
-    //         modal ? modules.modal.open(modal) : null;
-    //     }
-    // }, 0);
-
-    // form submit event
     document.dispatchEvent(
       new CustomEvent('formSent', {
-        detail: {
-          form: form,
-        },
+          detail: {
+              form: form,
+          },
       })
-    );
+  );
+  // show popup, if popup module is connected and form has setting
+  setTimeout(() => {
+      if (modules.popup) {
+          const popup = form.dataset.popupMessage;
+          popup ? modules.popup.open(popup) : null;
+      }
+      formValidate.formClean(form);
+  }, 300);
     // clean form
-    formValidate.formClean(form);
+    
   }
 }
