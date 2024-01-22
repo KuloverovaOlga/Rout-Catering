@@ -9,5 +9,8 @@
     background-image: url(./assets/images/picture/bg-img-1.svg);
   }
 }
+@import '../../ui/form';
+
+@import '../components/popup';
 
 @import '../components/main-banner';
