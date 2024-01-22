@@ -30,6 +30,9 @@
   &__link {
     color: $bodyColor;
     transition: color 0.4s ease;
+    &:hover {
+      color: $LightGreen;
+    }
   }
   &__contacts {
     color: $bodyColor;
