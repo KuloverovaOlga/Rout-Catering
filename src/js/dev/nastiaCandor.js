@@ -31,6 +31,9 @@ document.addEventListener('DOMContentLoaded', () => {
   try {
     mainBannerSlider();
   } catch {}
+  try {
+    servicesSlider();
+  } catch {}
 
 });
 
@@ -120,6 +123,28 @@ function mainBannerSlider() {
     pagination: {
       el: '.main-banner__fractions',
       type: "fraction",
+    },
+  });
+}
+
+function servicesSlider() {
+  const swiper = new Swiper('.services__slider', {
+    slidesPerView: 1,
+    speed: 1000,
+    spaceBetween: rem(2.4),
+    navigation: {
+      nextEl: '.services__btn-next',
+      prevEl: '.services__btn-prev',
+    },
+    pagination: {
+      el: '.services__fractions',
+      type: "fraction",
+    },
+    breakpoints: {
+      769: {
+        slidesPerView: 3,
+        spaceBetween: rem(2.4),
+      },
     },
   });
 }
