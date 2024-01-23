@@ -176,6 +176,11 @@ module.exports = {
   entry: {
     index: path.resolve(__dirname, 'src/js', 'app.js'),
     home: path.resolve(__dirname, 'src/js', 'app.js'),
+    articles: path.resolve(__dirname, 'src/js', 'app.js'),
+    detailed_article: path.resolve(__dirname, 'src/js', 'app.js'),
+    portfolio: path.resolve(__dirname, 'src/js', 'app.js'),
+    detailed_portfolio: path.resolve(__dirname, 'src/js', 'app.js'),
+    error: path.resolve(__dirname, 'src/js', 'app.js'),
   },
   // entry: getEntries(),
   output: {

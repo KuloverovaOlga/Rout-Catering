@@ -32,5 +32,6 @@ import './utils/select.js';
 
 import './dev/markusDM.js';
 import './dev/nastiaCandor.js';
+import './dev/kuloverova.js';
 
 
