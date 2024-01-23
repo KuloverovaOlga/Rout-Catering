@@ -23,6 +23,10 @@ body {
   padding: 0;
   color: $black; // цвет по умолчанию текста по сайту
   background-color: $bodyColor;
+  .lock & {
+    overflow: hidden;
+    touch-action: none;
+}
 }
 
 input,
