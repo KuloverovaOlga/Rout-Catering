@@ -31,7 +31,8 @@ import './utils/select.js';
 // ------------------------------- own scripts ------------------------------
 
 import './dev/markusDM.js';
-import './dev/nastiaCandor.js'
 import './dev/markJdays.js'
+import './dev/nastiaCandor.js';
+import './dev/kuloverova.js';
 
 

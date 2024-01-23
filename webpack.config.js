@@ -161,7 +161,12 @@ module.exports = {
         index: path.resolve(__dirname, 'src/js', 'app.js'),
         home: path.resolve(__dirname, 'src/js', 'app.js'),
         services_det: path.resolve(__dirname, 'src/js', 'app.js'),
-        contacts: path.resolve(__dirname, 'src/js', 'app.js')
+        contacts: path.resolve(__dirname, 'src/js', 'app.js'),
+        articles: path.resolve(__dirname, 'src/js', 'app.js'),
+        detailed_article: path.resolve(__dirname, 'src/js', 'app.js'),
+        portfolio: path.resolve(__dirname, 'src/js', 'app.js'),
+        detailed_portfolio: path.resolve(__dirname, 'src/js', 'app.js'),
+        error: path.resolve(__dirname, 'src/js', 'app.js'),
     },
     // entry: getEntries(),
     output: {
@@ -174,6 +179,7 @@ module.exports = {
         filename: '[name][contenthash].js'
         // assetModuleFilename: "assets/images",
     },
+ 
 
     plugins: [
         new CleanWebpackPlugin(),
