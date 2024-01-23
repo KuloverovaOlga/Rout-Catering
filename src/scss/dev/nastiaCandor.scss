@@ -1,16 +1,7 @@
-.bg-1 {
-  position: relative;
-  &::after {
-    content: '';
-    display: block;
-    position: absolute;
-    background-repeat: no-repeat;
-    background-size: 100%;
-    background-image: url(./assets/images/picture/bg-img-1.svg);
-  }
-}
+@import '../../ui/components-a.scss';
 @import '../../ui/form';
 
 @import '../components/popup';
 
 @import '../components/main-banner';
+@import '../components/our-offers';

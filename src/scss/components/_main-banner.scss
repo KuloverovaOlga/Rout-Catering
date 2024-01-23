@@ -45,6 +45,7 @@
   &__sub {
     grid-column: span 6;
     grid-row: span 1;
+    z-index: 1;
   }
   &__subtitle {
     margin: 3.2rem 0;
@@ -213,6 +214,7 @@
       color: $LightGreen;
       @include small-tablet {
         display: flex;
+        align-items: center;
       }
       span {
         display: none;
