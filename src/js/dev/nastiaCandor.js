@@ -20,6 +20,9 @@ document.addEventListener('DOMContentLoaded', () => {
   try {
     form();
   } catch {}
+  try {
+    ourOffersMoreBtn();
+  } catch {}
 
   // sliders
   try {
@@ -27,6 +30,33 @@ document.addEventListener('DOMContentLoaded', () => {
   } catch {}
 
 });
+
+function ourOffersMoreBtn() {
+  const lists = document.querySelectorAll('.our-offers__content-list');
+  lists.forEach((list) => {
+    const maxVisibleItems = 3;
+    const btn = list.querySelector('.our-offers__content-list-btn');
+    const items = list.querySelectorAll('.our-offers__content-list-li');
+
+    if (items.length <= maxVisibleItems) {
+      btn.classList.add('hide');
+    } else {
+      const hideList = () => {
+        for (let i = maxVisibleItems; i < items.length; i++) {
+          items[i].classList.add('hide');
+        }
+      };
+      const showList = () => {
+        items.forEach((el) => el.classList.remove('hide'));
+        btn.classList.add('hide');
+      };
+      hideList();
+      btn.addEventListener('click', () => {
+        showList();
+      });
+    }
+  });
+}
 
 // PHONE MASK
 
