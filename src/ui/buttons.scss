@@ -105,6 +105,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
+  &._green {
+    color: $green;
+    border-color: $green;
+  }
     &--dark {
         color: $main;
         border-color: $main;
