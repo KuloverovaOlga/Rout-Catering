@@ -6,10 +6,12 @@ let servSwiper = null;
 
 document.addEventListener('DOMContentLoaded', () => {
     // sliders
+    setOurWorksSlider();
+    setOtherServicesSlider();
 
     if (window.innerWidth < 769) {
         if (!servSwiper) {
-            servDetSlider();
+            setServDetSlider();
         }
     } else {
         if (servSwiper) {
@@ -17,15 +19,18 @@ document.addEventListener('DOMContentLoaded', () => {
             servSwiper = null;
         }
     }
- // map
-    contactsMap();
+    // map
+    initMap();
+
+    //add accardions
+    addAcc();
 });
 
 window.addEventListener('resize', () => {
     try {
         if (window.innerWidth < 769) {
             if (!servSwiper) {
-                servDetSlider();
+                setServDetSlider();
             }
         } else {
             if (servSwiper) {
@@ -39,7 +44,7 @@ window.addEventListener('resize', () => {
 });
 
 // SLIDERS ------------------------------------------------------------
-function servDetSlider() {
+function setServDetSlider() {
     // Уничтожаем предыдущий слайдер, если он был создан
     if (servSwiper) {
         servSwiper.destroy();
@@ -63,8 +68,117 @@ function servDetSlider() {
     });
 }
 
-// SLIDERS ------------------------------------------------------------
+function setOurWorksSlider() {
+    const ourWorksSlider = new Swiper('.our-works__slider', {
+        speed: 1000,
+        loop: false,
+        breakpoints: {
+            769: {
+                slidesPerView: 3,
+                slidesPerGroup: 3,
+                spaceBetween: rem(2.4)
+            },
+            320: {
+                slidesPerView: 1,
+                slidesPerGroup: 1,
+                spaceBetween: rem(3.2)
+            }
+        },
+        navigation: {
+            nextEl: '.our-works__btn-next',
+            prevEl: '.our-works__btn-prev'
+        },
+        pagination: {
+            el: '.our-works__fractions',
+            type: 'fraction'
+        }
+    });
+}
 
-function contactsMap() {
-    console.log('map is connected. Almost :D')
+function setOtherServicesSlider() {
+    const otherServicesSlider = new Swiper('.other-services__slider', {
+        speed: 1000,
+        loop: false,
+        breakpoints: {
+            769: {
+                slidesPerView: 3,
+                slidesPerGroup: 3,
+                spaceBetween: rem(2.4)
+            },
+            320: {
+                slidesPerView: 1,
+                slidesPerGroup: 1,
+                spaceBetween: rem(3.2)
+            }
+        },
+        navigation: {
+            nextEl: '.other-services__btn-next',
+            prevEl: '.other-services__btn-prev'
+        },
+        pagination: {
+            el: '.other-services__fractions',
+            type: 'fraction'
+        }
+    });
+}
+
+// MAPS ------------------------------------------------------------
+async function initMap() {
+    // Промис `ymaps3.ready` будет зарезолвлен, когда загрузятся все компоненты основного модуля API
+    if (typeof ymaps3 !== 'undefined') {
+        await ymaps3.ready;
+        const { YMap, YMapDefaultSchemeLayer, YMapDefaultFeaturesLayer, YMapMarker } = ymaps3;
+
+        // Initialize the map
+        let map = new YMap(
+            // Pass the link to the HTMLElement of the container
+            document.getElementById('contacts-root'),
+            // Pass the map initialization parameters
+            {
+                location: {
+                    // Координаты центра карты
+                    center: [37.628144, 55.733842],
+
+                    // Уровень масштабирования
+                    zoom: 12
+                }
+            },
+            [
+                // Add a map scheme layer
+                new YMapDefaultSchemeLayer({}),
+                // Add a layer of geo objects to display the markers
+                new YMapDefaultFeaturesLayer({})
+            ]
+        );
+
+        // Create markers with a custom icon and add them to the map
+
+        const markerElement = document.createElement('img');
+        markerElement.className = 'map__icon';
+        markerElement.src = '../../assets/images/icons/address-point_dark.svg';
+        map.addChild(new YMapMarker({ coordinates: [37.588144, 55.733842] }, markerElement));
+    }
+}
+// Accardion ------------------------------------------------------------
+function addAcc() {
+    const accWrap = document.querySelectorAll('.acc');
+    const active = 'active';
+    if (accWrap) {
+        accWrap.forEach((box) => {
+            const items = box.querySelectorAll('.acc__item');
+
+            items.forEach((item) => {
+                const itemHead = item.querySelector('.acc__item-head');
+
+                itemHead.addEventListener('click', () => {
+                    items.forEach((itm) => {
+                        if (itm !== item) {
+                            itm.classList.remove(active);
+                        }
+                    });
+                    item.classList.toggle(active);
+                });
+            });
+        });
+    }
 }

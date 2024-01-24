@@ -167,6 +167,7 @@ module.exports = {
         portfolio: path.resolve(__dirname, 'src/js', 'app.js'),
         detailed_portfolio: path.resolve(__dirname, 'src/js', 'app.js'),
         error: path.resolve(__dirname, 'src/js', 'app.js'),
+        delivery: path.resolve(__dirname, 'src/js', 'app.js')
     },
     // entry: getEntries(),
     output: {
@@ -179,7 +180,6 @@ module.exports = {
         filename: '[name][contenthash].js'
         // assetModuleFilename: "assets/images",
     },
- 
 
     plugins: [
         new CleanWebpackPlugin(),
