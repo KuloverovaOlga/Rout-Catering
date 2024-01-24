@@ -1,3 +1,6 @@
+@function rem-calc($value-in-rem) {
+    @return calc(round(#{$value-in-rem * 1rem}));
+}
 .price {
     color: $main;
     .container {
@@ -5,6 +8,11 @@
         flex-direction: column;
         align-items: center;
         gap: 8rem;
+
+        @include small-tablet {
+            flex-direction: column;
+            gap: 8rem;
+        }
     }
 
     &__img {
@@ -17,7 +25,11 @@
         height: 81.4rem;
         position: relative;
         display: flex;
-        flex-direction: column-reverse;
+
+        @include small-tablet {
+            width: 100%;
+            height: 40.3rem * 2;
+        }
 
         img {
             width: 100%;
@@ -32,6 +44,11 @@
         width: 100%;
         align-items: flex-start;
         justify-content: space-between;
+
+        @include small-tablet {
+            flex-direction: column-reverse;
+            gap: 8rem;
+        }
     }
 
     &__list {
@@ -39,6 +56,11 @@
         display: flex;
         flex-direction: column;
         gap: 3.2rem;
+
+        @include small-tablet {
+            gap: 6.4rem;
+            width: 100%;
+        }
     }
 
     &__item {
@@ -52,6 +74,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            cursor: pointer;
         }
 
         &-title {
@@ -83,6 +106,11 @@
                 height: 100%;
                 -o-object-fit: contain;
                 object-fit: contain;
+            }
+
+            @include small-tablet {
+                width: 3.2rem * 2;
+                height: 3.2rem * 2;
             }
         }
 
@@ -116,6 +144,11 @@
         width: 36.2rem;
         color: $textAndLine;
 
+        @include small-tablet {
+            gap: 1.2rem;
+            width: 100%;
+        }
+
         &-list {
             display: flex;
             flex-direction: column;
@@ -123,6 +156,10 @@
             padding-top: 0.8rem;
             width: 100%;
             border-top: 1px solid $textAndLine;
+
+            @include small-tablet {
+                gap: 0.8rem;
+            }
         }
 
         &-box {
@@ -131,11 +168,55 @@
             flex-direction: row;
             flex-wrap: wrap;
             gap: 2rem 2.3rem;
+
+            @include small-tablet {
+                padding-top: 4.8rem;
+                gap: 4rem;
+            }
         }
 
         &-item {
             position: relative;
             padding-left: 1.4rem;
+
+            @include small-tablet {
+                padding-left: 2.8rem;
+            }
+
+            &::before {
+                top: 0.7rem;
+                left: 0;
+                content: '';
+                position: absolute;
+                width: 6px;
+                height: 6px;
+                border-radius: 50%;
+                background-color: $main;
+
+                @media (max-width: 1200px) {
+                    width: 4px;
+                    height: 4px;
+                    top: 0.5rem;
+                }
+
+                @media (max-width: 840px) {
+                    width: 3px;
+                    height: 3px;
+                    top: 0.5rem;
+                }
+
+                @media (max-width: 640px) {
+                    width: 5px;
+                    height: 5px;
+                    top: 0.65rem * 2;
+                }
+
+                @include small-tablet {
+                    width: 0.6rem * 2;
+                    height: 0.6rem * 2;
+                    top: 0.65rem * 2;
+                }
+            }
         }
     }
 }

@@ -6,7 +6,6 @@ let servSwiper = null;
 
 document.addEventListener('DOMContentLoaded', () => {
     // sliders
-
     if (window.innerWidth < 769) {
         if (!servSwiper) {
             servDetSlider();
@@ -17,8 +16,11 @@ document.addEventListener('DOMContentLoaded', () => {
             servSwiper = null;
         }
     }
- // map
+    // map
     contactsMap();
+
+    //add accardions
+    addAcc()
 });
 
 window.addEventListener('resize', () => {
@@ -63,8 +65,32 @@ function servDetSlider() {
     });
 }
 
-// SLIDERS ------------------------------------------------------------
+// MAPS ------------------------------------------------------------
 
 function contactsMap() {
-    console.log('map is connected. Almost :D')
+    console.log('map is connected. Almost :D');
+}
+
+// MAPS ------------------------------------------------------------
+function addAcc() {
+    const accWrap = document.querySelectorAll('.acc');
+    const active = 'active';
+    if (accWrap) {
+        accWrap.forEach((box) => {
+            const items = box.querySelectorAll('.acc__item');
+
+            items.forEach((item) => {
+                const itemHead = item.querySelector('.acc__item-head');
+
+                itemHead.addEventListener('click', () => {
+                    items.forEach((itm) => {
+                        if (itm !== item) {
+                            itm.classList.remove(active);
+                        }
+                    });
+                    item.classList.toggle(active);
+                });
+            });
+        });
+    }
 }
