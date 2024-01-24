@@ -1,5 +1,10 @@
 .serv-det-banner {
     overflow: hidden;
+    padding-top: 8.6rem;
+
+    @include small-tablet {
+        padding-top: 4.8rem;
+    }
     .container {
         @include small-tablet {
             gap: 8rem;

@@ -7,7 +7,7 @@ let servSwiper = null;
 document.addEventListener('DOMContentLoaded', () => {
     // sliders
     setOurWorksSlider();
-    setOtherServicesSlider()
+    setOtherServicesSlider();
 
     if (window.innerWidth < 769) {
         if (!servSwiper) {
@@ -20,8 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
     // map
-    contactsMap();
-    
+    initMap();
 
     //add accardions
     addAcc();
@@ -31,7 +30,7 @@ window.addEventListener('resize', () => {
     try {
         if (window.innerWidth < 769) {
             if (!servSwiper) {
-                servDetSlider();
+                setServDetSlider();
             }
         } else {
             if (servSwiper) {
@@ -124,11 +123,42 @@ function setOtherServicesSlider() {
 }
 
 // MAPS ------------------------------------------------------------
+async function initMap() {
+    // Промис `ymaps3.ready` будет зарезолвлен, когда загрузятся все компоненты основного модуля API
+    if (typeof ymaps3 !== 'undefined') {
+        await ymaps3.ready;
+        const { YMap, YMapDefaultSchemeLayer, YMapDefaultFeaturesLayer, YMapMarker } = ymaps3;
 
-function contactsMap() {
-    console.log('map is connected. Almost :D');
+        // Initialize the map
+        let map = new YMap(
+            // Pass the link to the HTMLElement of the container
+            document.getElementById('contacts-root'),
+            // Pass the map initialization parameters
+            {
+                location: {
+                    // Координаты центра карты
+                    center: [37.628144, 55.733842],
+
+                    // Уровень масштабирования
+                    zoom: 12
+                }
+            },
+            [
+                // Add a map scheme layer
+                new YMapDefaultSchemeLayer({}),
+                // Add a layer of geo objects to display the markers
+                new YMapDefaultFeaturesLayer({})
+            ]
+        );
+
+        // Create markers with a custom icon and add them to the map
+
+        const markerElement = document.createElement('img');
+        markerElement.className = 'map__icon';
+        markerElement.src = '../../assets/images/icons/address-point_dark.svg';
+        map.addChild(new YMapMarker({ coordinates: [37.588144, 55.733842] }, markerElement));
+    }
 }
-
 // Accardion ------------------------------------------------------------
 function addAcc() {
     const accWrap = document.querySelectorAll('.acc');
