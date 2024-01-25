@@ -109,11 +109,11 @@
     color: $green;
     border-color: $green;
   }
-    &--dark {
-        color: $main;
-        border-color: $main;
-    }
-    @include small-tablet {
+  &--dark {
+      color: $main;
+      border-color: $main;
+  }
+  @include small-tablet {
         width: 8rem;
         height: 8rem;
     }
