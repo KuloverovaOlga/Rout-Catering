@@ -18,6 +18,9 @@ document.addEventListener('DOMContentLoaded', () => {
     phoneOrderLunchMask();
   } catch {}
   try {
+    phoneApplicationMask();
+  } catch {}
+  try {
     popup();
   } catch {}
   try {
@@ -81,6 +84,15 @@ function phonePopupMask() {
 function phoneOrderLunchMask() {
   IMask(
     document.querySelector('.order-lunch__form-input'),
+    {
+      mask: '+{7} (000) 000 00 00'
+    }
+  );
+}
+
+function phoneApplicationMask() {
+  IMask(
+    document.querySelector('.application__input.phone-mask'),
     {
       mask: '+{7} (000) 000 00 00'
     }
