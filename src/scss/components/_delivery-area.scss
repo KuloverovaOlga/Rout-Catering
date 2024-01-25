@@ -32,9 +32,13 @@
     &__map {
         width: 100.5rem;
         height: 55.1rem;
+        position: relative;
         border-radius: 4rem;
         overflow: hidden;
-        position: relative;
+
+        @include small-tablet {
+            border-radius: 8rem;
+        }
 
         @include small-tablet {
             width: 100%;
@@ -47,6 +51,8 @@
             height: 100%;
 
             img {
+                width: 100%;
+                height: 100%;
                 -o-object-fit: cover;
                 object-fit: cover;
             }
@@ -60,12 +66,115 @@
                 top: -2.3rem;
                 left: 21rem;
 
+                @include small-tablet {
+                    width: 50.6rem;
+                    height: 69rem;
+                    position: absolute;
+                    top: -4.3rem;
+                    left: 3rem;
+                }
+
                 svg {
                     width: 100%;
                     height: 100%;
                     -o-object-fit: contain;
                     object-fit: contain;
                 }
+
+                z-index: 3;
+            }
+
+            &-reg {
+                cursor: pointer;
+                &:hover {
+                    transition: fill-opacity 0.25s ease;
+                    fill-opacity: 0.5;
+                }
+            }
+        }
+    }
+
+    &__modals {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1;
+        pointer-events: none;
+
+        @include small-tablet {
+            width: 100%;
+            height: 100%;
+            bottom: 0;
+            left: 0;
+        }
+
+        &-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            color: $Beige;
+            border-radius: 2rem;
+            background: #2e574d;
+            padding: 2rem;
+            opacity: 0;
+            z-index: 0;
+            position: absolute;
+            transition: transform 0.35s ease-in-out, opacity 0.35s ease-in-out;
+            transform: translateY(-2rem);
+
+            @include small-tablet {
+                padding: 2.4rem 3.2rem;
+                border-radius: 3.2rem;
+            }
+
+            &.active {
+                opacity: 1;
+                z-index: 0;
+                transform: translate(0);
+            }
+
+            &-title,
+            &-subtitle {
+                white-space: nowrap;
+            }
+        }
+
+        &-item[data-modal='pos-1'] {
+            top: 6rem;
+            left: 28rem;
+            @include small-tablet {
+                top: 31rem;
+                left: 15rem;
+            }
+        }
+
+        &-item[data-modal='pos-2'] {
+            top: 12rem;
+            left: 20rem;
+
+            @include small-tablet {
+                top: 36rem;
+                left: 8rem;
+            }
+        }
+
+        &-item[data-modal='pos-3'] {
+            top: 4rem;
+            left: 0rem;
+
+            @include small-tablet {
+                top: 38rem;
+                left: 0rem;
+            }
+        }
+
+        &-item[data-modal='pos-4'] {
+            top: 32rem;
+            left: 26rem;
+
+            @include small-tablet {
+                top: 46rem;
+                left: 10rem;
             }
         }
     }
