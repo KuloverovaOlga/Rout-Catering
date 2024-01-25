@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // sliders
     setOurWorksSlider();
     setOtherServicesSlider();
+    setPaymentMethodsSlider()
 
     if (window.innerWidth < 769) {
         if (!servSwiper) {
@@ -117,6 +118,33 @@ function setOtherServicesSlider() {
         },
         pagination: {
             el: '.other-services__fractions',
+            type: 'fraction'
+        }
+    });
+}
+
+function setPaymentMethodsSlider() {
+    const paymentMethodsSlider = new Swiper('.delivery-payment__slider', {
+        speed: 1000,
+        loop: false,
+        breakpoints: {
+            769: {
+                slidesPerView: 3,
+                slidesPerGroup: 3,
+                spaceBetween: rem(2.4)
+            },
+            320: {
+                slidesPerView: 1,
+                slidesPerGroup: 1,
+                spaceBetween: rem(3.2)
+            }
+        },
+        navigation: {
+            nextEl: '.delivery-payment__btn-next',
+            prevEl: '.delivery-payment__btn-prev'
+        },
+        pagination: {
+            el: '.delivery-payment__fractions',
             type: 'fraction'
         }
     });
