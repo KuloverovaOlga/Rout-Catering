@@ -40,6 +40,9 @@ document.addEventListener('DOMContentLoaded', () => {
   try {
     reviewsSlider();
   } catch {}
+  try {
+    corpFoodSlider();
+  } catch {}
 
 });
 
@@ -182,6 +185,45 @@ function reviewsSlider() {
         slidesPerView: 3,
         spaceBetween: rem(2.4),
       },
+    },
+  });
+}
+
+function corpFoodSlider() {
+  const swiper = new Swiper('.corp-food__slider_desc', {
+    slidesPerView: 1,
+    speed: 1000,
+    spaceBetween: rem(2.4),
+    effect: "fade",
+    loop: 'true',
+    autoplay: {
+      delay: 2500,
+      disableOnInteraction: true,
+    },
+    fadeEffect: {
+      crossFade: true
+    },
+    navigation: {
+      nextEl: '.corp-food__btn-next_desc',
+      prevEl: '.corp-food__btn-prev_desc',
+    },
+    pagination: {
+      el: '.corp-food__fractions_desc',
+      type: "fraction",
+    },
+  });
+  const swiperMob = new Swiper('.corp-food__slider_mob', {
+    slidesPerView: 1,
+    speed: 1000,
+    spaceBetween: rem(2.4),
+    effect: "fade",
+    loop: 'true',
+    fadeEffect: {
+      crossFade: true
+    },
+    navigation: {
+      nextEl: '.corp-food__btn-next_mob',
+      prevEl: '.corp-food__btn-prev_mob',
     },
   });
 }
