@@ -29,6 +29,9 @@ document.addEventListener('DOMContentLoaded', () => {
   try {
     ourOffersMoreBtn();
   } catch {}
+  try {
+    seoBlockMoreBtn();
+  } catch {}
 
   // sliders
   try {
@@ -70,6 +73,15 @@ function ourOffersMoreBtn() {
         showList();
       });
     }
+  });
+}
+
+function seoBlockMoreBtn() {
+  const btn = document.querySelector('.seo-block__more-btn');
+  const text = document.querySelector('.seo-block__text');
+  btn.addEventListener('click', () => {
+    text.classList.add('show');
+    btn.classList.add('hide');
   });
 }
 
