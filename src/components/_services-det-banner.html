@@ -9,9 +9,18 @@
                         Наши кейтеринговые услуги предоставляют полный спектр обеденных решений для вашего
                         бизнеса.
                     </p>
-                    <div class="input__box">
-                        <input type="tel" class="input txt20" placeholder="Введите телефон" />
-                        <span class="input__error txt16">Ошибка</span>
+                    <div class="input__box form__input-wrapper input-group">
+                        <input
+                            class="phone-input input input--tel txt20 phone-mask"
+                            type="text"
+                            placeholder="Введите номер"
+                            data-validate
+                            data-required="tel"
+                            autocomplete="off"
+                            name="form[]"
+                        />
+
+                        <span class="error-span txt16">Ошибка</span>
                     </div>
 
                     <button class="btn-pr">

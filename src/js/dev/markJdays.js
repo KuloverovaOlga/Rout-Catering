@@ -1,6 +1,7 @@
 import { rem } from '../utils/utils';
 import Swiper from 'swiper/bundle';
 import 'swiper/css/bundle';
+import IMask from 'imask';
 
 let servSwiper = null;
 
@@ -8,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // sliders
     setOurWorksSlider();
     setOtherServicesSlider();
-    setPaymentMethodsSlider()
+    setPaymentMethodsSlider();
 
     if (window.innerWidth < 769) {
         if (!servSwiper) {
@@ -23,8 +24,15 @@ document.addEventListener('DOMContentLoaded', () => {
     // map
     initMap();
 
+    // svg map
+    mapSvg();
+
     //add accardions
     addAcc();
+
+    //valid / mask
+    setPhoneInputValidation()
+    
 });
 
 window.addEventListener('resize', () => {
@@ -150,7 +158,7 @@ function setPaymentMethodsSlider() {
     });
 }
 
-// MAPS ------------------------------------------------------------
+// MAPS ----------------------------------------------------------------
 async function initMap() {
     // Промис `ymaps3.ready` будет зарезолвлен, когда загрузятся все компоненты основного модуля API
     if (typeof ymaps3 !== 'undefined') {
@@ -187,6 +195,26 @@ async function initMap() {
         map.addChild(new YMapMarker({ coordinates: [37.588144, 55.733842] }, markerElement));
     }
 }
+
+// MAP-svg -------------------------------------------------------------
+function mapSvg() {
+    const svgAreas = document.querySelectorAll('.delivery-area__map-svg-reg');
+
+    if (svgAreas) {
+        svgAreas.forEach((svg) => {
+            const data = svg.getAttribute('data-path');
+            const modal = document.querySelector(`[data-modal="${data}"]`);
+
+            svg.addEventListener('mouseover', () => {
+                modal.classList.add('active');
+            });
+            svg.addEventListener('mouseout', () => {
+                modal.classList.remove('active');
+            });
+        });
+    }
+}
+
 // Accardion ------------------------------------------------------------
 function addAcc() {
     const accWrap = document.querySelectorAll('.acc');
@@ -210,3 +238,13 @@ function addAcc() {
         });
     }
 }
+
+// Validation -----------------------------------------------------------
+function setPhoneInputValidation() {
+    IMask(
+      document.querySelector('.phone-input'),
+      {
+        mask: '+{7} (000) 000 00 00'
+      }
+    );
+  }

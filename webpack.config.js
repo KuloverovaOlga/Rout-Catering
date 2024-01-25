@@ -167,7 +167,8 @@ module.exports = {
         portfolio: path.resolve(__dirname, 'src/js', 'app.js'),
         detailed_portfolio: path.resolve(__dirname, 'src/js', 'app.js'),
         error: path.resolve(__dirname, 'src/js', 'app.js'),
-        delivery: path.resolve(__dirname, 'src/js', 'app.js')
+        delivery: path.resolve(__dirname, 'src/js', 'app.js'),
+        corpo_food: path.resolve(__dirname, 'src/js', 'app.js')
     },
     // entry: getEntries(),
     output: {
