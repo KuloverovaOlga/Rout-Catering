@@ -5,13 +5,13 @@
       width: 55.8rem;
       height: 47rem;
       top: -7rem;
-      left: 5rem;
+      right: calc(50% + 35rem);
       z-index: 0;
       @include small-tablet {
         width: 44rem;
         height: 38rem;
         top: -15rem;
-        left: 0rem;
+        right: calc(50% - 8rem);
         transform: rotate(-16deg);
       }
     }

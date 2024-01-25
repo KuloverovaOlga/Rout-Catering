@@ -8,11 +8,12 @@
       height: 50rem;
       top: 26rem;
       right: 79rem;
+      right: calc(50% - 17rem);
       @include small-tablet {
         width: 49rem;
         height: 49rem;
         top: 49rem;
-        right: -3rem;
+        right: calc(50% - 40rem);
         transform: rotate(103deg);
       }
     }
