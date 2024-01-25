@@ -34,6 +34,9 @@ document.addEventListener('DOMContentLoaded', () => {
   try {
     servicesSlider();
   } catch {}
+  try {
+    reviewsSlider();
+  } catch {}
 
 });
 
@@ -138,6 +141,28 @@ function servicesSlider() {
     },
     pagination: {
       el: '.services__fractions',
+      type: "fraction",
+    },
+    breakpoints: {
+      769: {
+        slidesPerView: 3,
+        spaceBetween: rem(2.4),
+      },
+    },
+  });
+}
+
+function reviewsSlider() {
+  const swiper = new Swiper('.reviews__slider', {
+    slidesPerView: 1,
+    speed: 1000,
+    spaceBetween: rem(2.4),
+    navigation: {
+      nextEl: '.reviews__btn-next',
+      prevEl: '.reviews__btn-prev',
+    },
+    pagination: {
+      el: '.reviews__fractions',
       type: "fraction",
     },
     breakpoints: {
