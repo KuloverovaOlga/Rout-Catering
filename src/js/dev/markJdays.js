@@ -1,6 +1,7 @@
 import { rem } from '../utils/utils';
 import Swiper from 'swiper/bundle';
 import 'swiper/css/bundle';
+import IMask from 'imask';
 
 let servSwiper = null;
 
@@ -28,6 +29,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     //add accardions
     addAcc();
+
+    //valid / mask
+    setPhoneInputValidation()
+    
 });
 
 window.addEventListener('resize', () => {
@@ -233,3 +238,13 @@ function addAcc() {
         });
     }
 }
+
+// Validation -----------------------------------------------------------
+function setPhoneInputValidation() {
+    IMask(
+      document.querySelector('.phone-input'),
+      {
+        mask: '+{7} (000) 000 00 00'
+      }
+    );
+  }
