@@ -49,8 +49,14 @@ main {
 
 section {
   padding: 15rem 0;
+    @media (max-width: 48em) {
+        padding: 18rem 0;
+    }
   &._first {
     padding: 0 0 15rem;
+    @media (max-width: 48em) {
+        padding: 0 0 18rem;
+    }
   }
 }
 

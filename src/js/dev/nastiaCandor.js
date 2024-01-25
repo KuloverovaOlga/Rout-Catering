@@ -15,24 +15,84 @@ document.addEventListener('DOMContentLoaded', () => {
     phonePopupMask();
   } catch {}
   try {
+    phoneOrderLunchMask();
+  } catch {}
+  try {
+    phoneApplicationMask();
+  } catch {}
+  try {
     popup();
   } catch {}
   try {
     form();
+  } catch {}
+  try {
+    ourOffersMoreBtn();
   } catch {}
 
   // sliders
   try {
     mainBannerSlider();
   } catch {}
+  try {
+    servicesSlider();
+  } catch {}
+  try {
+    reviewsSlider();
+  } catch {}
 
 });
+
+function ourOffersMoreBtn() {
+  const lists = document.querySelectorAll('.our-offers__content-list');
+  lists.forEach((list) => {
+    const maxVisibleItems = 3;
+    const btn = list.querySelector('.our-offers__content-list-btn');
+    const items = list.querySelectorAll('.our-offers__content-list-li');
+
+    if (items.length <= maxVisibleItems) {
+      btn.classList.add('hide');
+    } else {
+      const hideList = () => {
+        for (let i = maxVisibleItems; i < items.length; i++) {
+          items[i].classList.add('hide');
+        }
+      };
+      const showList = () => {
+        items.forEach((el) => el.classList.remove('hide'));
+        btn.classList.add('hide');
+      };
+      hideList();
+      btn.addEventListener('click', () => {
+        showList();
+      });
+    }
+  });
+}
 
 // PHONE MASK
 
 function phonePopupMask() {
   IMask(
     document.querySelector('.popup__application-input.phone-mask'),
+    {
+      mask: '+{7} (000) 000 00 00'
+    }
+  );
+}
+
+function phoneOrderLunchMask() {
+  IMask(
+    document.querySelector('.order-lunch__form-input'),
+    {
+      mask: '+{7} (000) 000 00 00'
+    }
+  );
+}
+
+function phoneApplicationMask() {
+  IMask(
+    document.querySelector('.application__input.phone-mask'),
     {
       mask: '+{7} (000) 000 00 00'
     }
@@ -78,6 +138,50 @@ function mainBannerSlider() {
     pagination: {
       el: '.main-banner__fractions',
       type: "fraction",
+    },
+  });
+}
+
+function servicesSlider() {
+  const swiper = new Swiper('.services__slider', {
+    slidesPerView: 1,
+    speed: 1000,
+    spaceBetween: rem(2.4),
+    navigation: {
+      nextEl: '.services__btn-next',
+      prevEl: '.services__btn-prev',
+    },
+    pagination: {
+      el: '.services__fractions',
+      type: "fraction",
+    },
+    breakpoints: {
+      769: {
+        slidesPerView: 3,
+        spaceBetween: rem(2.4),
+      },
+    },
+  });
+}
+
+function reviewsSlider() {
+  const swiper = new Swiper('.reviews__slider', {
+    slidesPerView: 1,
+    speed: 1000,
+    spaceBetween: rem(2.4),
+    navigation: {
+      nextEl: '.reviews__btn-next',
+      prevEl: '.reviews__btn-prev',
+    },
+    pagination: {
+      el: '.reviews__fractions',
+      type: "fraction",
+    },
+    breakpoints: {
+      769: {
+        slidesPerView: 3,
+        spaceBetween: rem(2.4),
+      },
     },
   });
 }
