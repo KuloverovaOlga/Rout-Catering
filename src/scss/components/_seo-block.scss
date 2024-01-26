@@ -5,6 +5,25 @@
         color: $Beige;
         background-color: $green;
     }
+    &.bg-2 {
+        &::before {
+            width: 55.8rem;
+            height: 47rem;
+            top: -22rem;
+            right: 0;
+            z-index: 0;
+            transform: rotate(90deg);
+
+            @include small-tablet {
+                width: 55.8rem;
+                height: 47rem;
+                top: -22rem;
+                right: 0;
+                z-index: 0;
+                transform: rotate(100deg);
+            }
+        }
+    }
     .container {
         display: flex;
         justify-content: space-between;

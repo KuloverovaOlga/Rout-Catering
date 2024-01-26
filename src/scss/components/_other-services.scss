@@ -17,6 +17,26 @@
         position: relative;
     }
 
+    &.bg-1 {
+        &::after {
+            width: 40.9rem;
+            height: 42.6rem;
+            top: -15rem;
+            right: calc(50% + 50rem);
+            z-index: 0;
+
+            @include small-tablet {
+                width: 50.9rem;
+                height: 44.6rem;
+                top: -23rem;
+                right: auto;
+                z-index: 0;
+                left: 0;
+                transform: rotate(100deg);
+            }
+        }
+    }
+
     &__slider-nav {
         width: 30.9rem;
         position: absolute;
