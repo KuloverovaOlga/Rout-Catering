@@ -2,6 +2,17 @@
     background-color: #D3FCA0;
     color: #2E574D;
 
+    &.bg-3 {
+        &::after {
+            width: 45.5rem;
+            height: 39.8rem;
+            top: -14rem;
+            right: calc(50% + 0rem);
+            z-index: 0;
+            transform: rotate(50deg);
+        }
+    }
+
     .container {
         display: flex;
         justify-content: space-between;
@@ -79,6 +90,17 @@
             flex-direction: column;
             justify-content: space-between;
             align-items: inherit;
+        }
+
+        &.bg-3 {
+            &::after {
+                width: 45.5rem;
+                height: 29.8rem;
+                top: -14rem;
+                right: 4rem;
+                z-index: 0;
+                transform: rotate(50deg);
+            }
         }
     
         &__left {

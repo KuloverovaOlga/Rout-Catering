@@ -19,6 +19,32 @@
         @include small-tablet {
             flex-direction: column;
             gap: 6.4rem;
+            position: relative;
+            overflow: hidden;
+        }
+    }
+
+    &__emb {
+        position: absolute;
+        width: 48.9rem;
+        height: 48.9rem;
+        transform: rotate(90deg);
+        top: 40rem;
+        left: 72rem;
+
+        svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        @include small-tablet {
+            position: absolute;
+            width: 48.9rem;
+            height: 48.9rem;
+            transform: rotate(15deg);
+            top: 26rem;
+            right: -8rem;
+            left: auto;
         }
     }
 
@@ -54,6 +80,8 @@
 
         @include small-tablet {
             width: 100%;
+            position: relative;
+            z-index: 1;
         }
 
         &-head {
