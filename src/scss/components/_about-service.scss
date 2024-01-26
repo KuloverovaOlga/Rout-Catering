@@ -1,0 +1,58 @@
+.about-service {
+    background-color: $Beige;
+    color: $main;
+    .container {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__info {
+        width: 74.7rem;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+
+        &-title {
+            margin-bottom: 2.4rem;
+        }
+
+        &-descr {
+            margin-bottom: 5.2rem;
+        }
+
+        &-img {
+            -webkit-mask-image: url(./assets/images/picture/about-service-img.webp);
+            mask-image: url(./assets/images/picture/about-service-img.webp);
+            -webkit-mask-repeat: no-repeat;
+            mask-repeat: no-repeat;
+            -webkit-mask-size: contain;
+            mask-size: contain;
+            height: 43.8rem;
+            width: 100%;
+
+            img {
+                width: 100%;
+                height: 100%;
+                -o-object-fit: cover;
+                object-fit: cover;
+            }
+        }
+    }
+    &__bricks {
+        display: flex;
+        flex-wrap: wrap;
+        width: 72rem;
+
+        &-item {
+            width: 36rem;
+            height: 36rem;
+            -webkit-mask-image: url(./assets/images/picture/about-service-brick.webp);
+            mask-image: url(./assets/images/picture/about-service-brick.webp);
+            -webkit-mask-repeat: no-repeat;
+            mask-repeat: no-repeat;
+            -webkit-mask-size: contain;
+            mask-size: contain;
+            background-color: $main;
+        }
+    }
+}
