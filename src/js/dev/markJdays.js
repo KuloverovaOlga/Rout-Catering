@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setOurWorksSlider();
     setOtherServicesSlider();
     setPaymentMethodsSlider();
+    setAboutServicesSlider();
 
     if (window.innerWidth < 769) {
         if (!servSwiper) {
@@ -31,8 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
     addAcc();
 
     //valid / mask
-    setPhoneInputValidation()
-    
+    setPhoneInputValidation();
 });
 
 window.addEventListener('resize', () => {
@@ -158,6 +158,23 @@ function setPaymentMethodsSlider() {
     });
 }
 
+function setAboutServicesSlider() {
+    const aboutServicesSlider = new Swiper('.about-service__swiper', {
+        speed: 1000,
+        loop: false,
+        slidesPerView: 1.1,
+        slidesPerGroup: 1,
+        navigation: {
+            nextEl: '.about-service__btn-next',
+            prevEl: '.about-service__btn-prev'
+        },
+        pagination: {
+            el: '.about-service__fractions',
+            type: 'fraction'
+        }
+    });
+}
+
 // MAPS ----------------------------------------------------------------
 async function initMap() {
     // Промис `ymaps3.ready` будет зарезолвлен, когда загрузятся все компоненты основного модуля API
@@ -241,10 +258,7 @@ function addAcc() {
 
 // Validation -----------------------------------------------------------
 function setPhoneInputValidation() {
-    IMask(
-      document.querySelector('.phone-input'),
-      {
+    IMask(document.querySelector('.phone-input'), {
         mask: '+{7} (000) 000 00 00'
-      }
-    );
-  }
+    });
+}
