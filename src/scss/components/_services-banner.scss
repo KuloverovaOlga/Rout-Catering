@@ -53,6 +53,7 @@
   &__wrapper {
     display: flex;
     justify-content: center;
+    position: relative;
   }
   &__img {
     &-box {
@@ -79,8 +80,8 @@
     }
     &-menu {
       position: absolute;
-      bottom: 39rem;
-      left: 28rem;
+      bottom: 15.5rem;
+      left: 8rem;
       background-color: $Beige;
       color: $green;
       border-radius: 2rem;
@@ -89,8 +90,8 @@
       align-items: flex-end;
       padding: 2.5rem 1rem;
       @include small-tablet {
-        bottom: -57rem;
-        left: 3rem;
+        bottom: 18rem;
+        left: 0rem;
         height: 29rem;
         padding: 3.5rem 1rem;
       }
