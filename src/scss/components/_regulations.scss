@@ -21,6 +21,17 @@
             right: 6rem;
             transform: rotate(179deg);
         }
+
+        @include small-tablet {
+            &::after {
+                content: '';
+                width: 49rem;
+                height: 49rem;
+                bottom:-43rem;
+                right: 0;
+                transform: rotate(279deg);
+            }
+        }
     }
 
     // .regulations__title
