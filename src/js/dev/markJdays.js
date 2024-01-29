@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setOtherServicesSlider();
     setPaymentMethodsSlider();
     setAboutServicesSlider();
+    setSuggestionsSlider();
 
     if (window.innerWidth < 769) {
         if (!servSwiper) {
@@ -28,11 +29,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // svg map
     mapSvg();
 
-    //add accardions
+    // add accardions
     addAcc();
 
-    //valid / mask
+    // valid / mask
     setPhoneInputValidation();
+
+    // set toggle classes for mobile list
+    setToggleListMob();
 });
 
 window.addEventListener('resize', () => {
@@ -175,6 +179,24 @@ function setAboutServicesSlider() {
     });
 }
 
+function setSuggestionsSlider() {
+    const sliderElements = document.querySelectorAll('.our-suggestions__slider');
+
+    sliderElements.forEach((element) => {
+        new Swiper(element, {
+            speed: 1000,
+            effect: 'fade',
+            spaceBetween: rem(2),
+            slidesPerView: 1,
+            slidesPerGroup: 1,
+            navigation: {
+                nextEl: '.our-suggestions__btn-next',
+                prevEl: '.our-suggestions__btn-prev'
+            }
+        });
+    });
+}
+
 // MAPS ----------------------------------------------------------------
 async function initMap() {
     // Промис `ymaps3.ready` будет зарезолвлен, когда загрузятся все компоненты основного модуля API
@@ -260,5 +282,35 @@ function addAcc() {
 function setPhoneInputValidation() {
     IMask(document.querySelector('.phone-input'), {
         mask: '+{7} (000) 000 00 00'
+    });
+}
+
+// Открытие списка при мобилке ------------------------------------------
+
+function setToggleListMob() {
+    const showBtns = document.querySelectorAll('.our-suggestions__show-btn');
+
+    if (!showBtns) return;
+
+    showBtns.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+            const parentMenuList = this.parentElement.querySelectorAll('.our-suggestions__category-list');
+            const parentWrap = this.closest('.our-suggestions__item-desc');
+            const lists = parentWrap.querySelectorAll('.our-suggestions__item-menu');
+
+            lists.forEach((item) => {
+                item.classList.toggle('hide-all');
+            });
+
+            parentMenuList.forEach((item) => {
+                item.classList.toggle('hide-all');
+            });
+
+            if (!parentMenuList[0].classList.contains('hide-all')) {
+                this.textContent = 'скрыть';
+            } else {
+                this.textContent = 'показать все';
+            }
+        });
     });
 }
