@@ -62,8 +62,8 @@
         text-align: center;
     }
     &__img {
-        -webkit-mask-image: url('../../assets/images/picture/banner-food-1.webp');
-        mask-image: url('../../assets/images/picture/banner-food-1.webp');
+        -webkit-mask-image: url('./assets/images/picture/banner-food-1.webp');
+        mask-image: url('./assets/images/picture/banner-food-1.webp');
         -webkit-mask-repeat: no-repeat;
         mask-repeat: no-repeat;
         -webkit-mask-size: contain;
